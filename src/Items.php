@@ -35,6 +35,16 @@ final class Items extends Field
         ]);
     }
 
+    /**
+     * @param int<1, max> $max
+     */
+    public function max(int $max): static
+    {
+        return $this->withMeta([
+            'max' => $max,
+        ]);
+    }
+
     public function draggable(bool $enabled = true): static
     {
         return $this->withMeta([
