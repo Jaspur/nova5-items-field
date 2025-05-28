@@ -6,7 +6,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     lib: {
-      entry: path.resolve(__dirname, 'resources/js/field.vue'),
+      entry: path.resolve(__dirname, 'resources/js/entry.js'),
       name: 'Nova5ItemsField',
       fileName: () => 'field.js',
     },
