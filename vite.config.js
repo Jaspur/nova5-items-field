@@ -4,18 +4,19 @@ import path from 'path';
 
 export default defineConfig({
   build: {
-    outDir: 'dist',
+    outDir: 'dist/js',
+    emptyOutDir: true,
     lib: {
       entry: path.resolve(__dirname, 'resources/js/entry.js'),
       name: 'Nova5ItemsField',
       fileName: () => 'field.js',
+      formats: ['es']
     },
     rollupOptions: {
-      external: ['vue', '@nova'],
+      external: ['vue'],
       output: {
         globals: {
           vue: 'Vue',
-          '@nova': 'Nova',
         },
       },
     },
