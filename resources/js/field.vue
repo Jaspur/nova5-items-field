@@ -1,6 +1,7 @@
 <template>
-  <h1 class="text-red-600 text-xl font-bold">✅ Component geladen (nova5-items-field)</h1>
   <div>
+    <h1 class="text-red-600 text-xl font-bold">✅ Component geladen (nova5-items-field)</h1>
+
     <div class="space-y-2">
       <div
         v-for="(item, index) in value"
@@ -28,50 +29,61 @@
       @paste="handlePaste"
       type="text"
       class="mt-2 w-full form-input form-input-bordered"
-      :placeholder="meta.placeholder || 'Add item'"
+      :placeholder="field.meta.placeholder || 'Add item'"
     />
   </div>
 </template>
 
-<script setup>
-console.log('✅ Loaded nova5-items-field component');
-import { ref, watch } from 'vue';
-import { useField } from '@nova';
+<script>
+import { defineComponent, ref } from 'vue'
+import { useField } from '@nova'
 
-const props = defineProps({
-  field: Object,
-  resourceId: String,
-  resourceName: String,
-  resource: Object,
-});
+export default defineComponent({
+  name: 'nova5-items-field',
 
-const { value, meta, update } = useField(props.field);
-console.log('📦 props:', props);
-console.log('📦 value:', value);
-console.log('📦 meta:', meta);
+  props: {
+    field: Object,
+    resourceId: String,
+    resourceName: String,
+    resource: Object,
+  },
 
-const newItem = ref('');
+  setup(props) {
+    const { value, meta, update } = useField(props.field)
+    const newItem = ref('')
 
-const add = () => {
-  if (!newItem.value.trim()) return;
-  value.value.push(newItem.value.trim());
-  newItem.value = '';
-  update();
-};
+    const add = () => {
+      if (!newItem.value.trim()) return
+      value.value.push(newItem.value.trim())
+      newItem.value = ''
+      update()
+    }
 
-const remove = (index) => {
-  value.value.splice(index, 1);
-  update();
-};
+    const remove = (index) => {
+      value.value.splice(index, 1)
+      update()
+    }
 
-const handlePaste = (event) => {
-  const paste = event.clipboardData.getData('text');
-  if (!meta.split) return;
-  const items = paste.split(meta.split).map(s => s.trim()).filter(Boolean);
-  value.value.push(...items);
-  newItem.value = '';
-  update();
-};
+    const handlePaste = (event) => {
+      const paste = event.clipboardData.getData('text')
+      if (!meta.split) return
+      const items = paste.split(meta.split).map(s => s.trim()).filter(Boolean)
+      value.value.push(...items)
+      newItem.value = ''
+      update()
+    }
+
+    return {
+      value,
+      meta,
+      newItem,
+      add,
+      remove,
+      handlePaste,
+      field: props.field
+    }
+  }
+})
 </script>
 
 <style scoped>
