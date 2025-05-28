@@ -40,4 +40,28 @@ final class Items extends Field
             'split' => $delimiter,
         ]);
     }
+
+    public function draggable(bool $enabled = true): static
+    {
+        return $this->withMeta([
+            'draggable' => $enabled,
+        ]);
+    }
+
+    public function fullWidth(bool $enabled = true): static
+    {
+        return $this->withMeta([
+            'fullWidth' => $enabled,
+        ]);
+    }
+
+    /**
+     * @param non-empty-string $text
+     */
+    public function createButtonValue(string $text): static
+    {
+        return $this->withMeta([
+            'createButtonValue' => $text,
+        ]);
+    }
 }
