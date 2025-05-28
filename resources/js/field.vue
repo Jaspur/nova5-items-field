@@ -1,4 +1,5 @@
 <template>
+  <h1 class="text-red-600 text-xl font-bold">✅ Component geladen (nova5-items-field)</h1>
   <div>
     <div class="space-y-2">
       <div
@@ -45,6 +46,9 @@ const props = defineProps({
 });
 
 const { value, meta, update } = useField(props.field);
+console.log('📦 props:', props);
+console.log('📦 value:', value);
+console.log('📦 meta:', meta);
 
 const newItem = ref('');
 
