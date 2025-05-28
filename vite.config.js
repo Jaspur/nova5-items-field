@@ -1,23 +1,24 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import path from 'path';
+import vue from "@vitejs/plugin-vue";
+import path from "path";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   build: {
-    outDir: 'dist',
+    outDir: "dist",
     lib: {
-      entry: path.resolve(__dirname, 'resources/js/field.ts'),
-      name: 'Nova5ItemsField',
-      fileName: () => 'field.js',
+      entry: path.resolve(__dirname, "resources/js/field.vue"),
+      name: "Nova5ItemsField",
+      fileName: () => "field.js",
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ["vue", "@nova"],
+
       output: {
         globals: {
-          vue: 'Vue',
+          vue: "Vue",
         },
       },
     },
   },
-  plugins: [vue()]
+  plugins: [vue()],
 });
