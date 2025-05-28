@@ -20,12 +20,6 @@ final class Items extends Field
         $this->component = self::COMPONENT;
     }
 
-    public function placeholder(string $placeholder): static
-    {
-        return $this->withMeta([
-            'placeholder' => $placeholder,
-        ]);
-    }
 
     public function reorderable(bool $enabled = true): static
     {
@@ -64,4 +58,5 @@ final class Items extends Field
             'createButtonValue' => $text,
         ]);
     }
+
 }
