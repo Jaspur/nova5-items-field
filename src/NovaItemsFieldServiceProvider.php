@@ -12,7 +12,7 @@ final class NovaItemsFieldServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Nova::serving(function (): void {
-            Nova::script('nova5-items-field', __DIR__ . '/../dist/field.js');
+            Nova::script('nova5-items-field', __DIR__ . '/../dist/js/field.js');
         });
     }
 }

@@ -33,6 +33,7 @@
 </template>
 
 <script setup>
+console.log('✅ Loaded nova5-items-field component');
 import { ref, watch } from 'vue';
 import { useField } from '@nova';
 
